@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "packages/shared/data-access-user",
+  "sourceRoot": "packages/shared/data-access-user/src",
+  "prefix": "ng-mfe",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/shared/data-access-user"],
+      "options": {
+        "jestConfig": "packages/shared/data-access-user/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/shared/data-access-user/src/**/*.ts",
+          "packages/shared/data-access-user/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

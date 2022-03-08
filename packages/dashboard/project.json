@@ -1,0 +1,108 @@
+{
+  "projectType": "application",
+  "root": "packages/dashboard",
+  "sourceRoot": "packages/dashboard/src",
+  "prefix": "ng-mfe",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/dashboard",
+        "index": "packages/dashboard/src/index.html",
+        "main": "packages/dashboard/src/main.ts",
+        "polyfills": "packages/dashboard/src/polyfills.ts",
+        "tsConfig": "packages/dashboard/tsconfig.app.json",
+        "assets": [
+          "packages/dashboard/src/favicon.ico",
+          "packages/dashboard/src/assets"
+        ],
+        "styles": ["packages/dashboard/src/styles.css"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "packages/dashboard/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "packages/dashboard/src/environments/environment.ts",
+              "with": "packages/dashboard/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "packages/dashboard/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "dashboard:build:production"
+        },
+        "development": {
+          "browserTarget": "dashboard:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "publicHost": "http://localhost:4200"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "dashboard:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/dashboard/src/**/*.ts",
+          "packages/dashboard/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/dashboard"],
+      "options": {
+        "jestConfig": "packages/dashboard/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "serve-mfe": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx serve login", "nx serve dashboard"]
+      }
+    }
+  },
+  "tags": []
+}
