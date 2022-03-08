@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "ngcc --properties es2015 browser module main",
-    "start": "nx run dashboard:serve-mfe"
+    "start": "node dist/packages/dashboard"
   },
   "private": true,
   "dependencies": {
