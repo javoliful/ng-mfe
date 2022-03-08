@@ -7,7 +7,7 @@ import { UserService } from '@ng-mfe/shared/data-access-user';
     <div class="login-app">
       <form class="login-form" (ngSubmit)="login()">
         <label>
-          Username:
+          Emails2:
           <input type="text" name="username" [(ngModel)]="username" />
         </label>
         <label>
